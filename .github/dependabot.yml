@@ -1,0 +1,16 @@
+version: 2
+registries:
+  xenyo-satis:
+    type: composer-repository
+    url: https://packages.xenyo.net
+    username: xenyo
+    password: ${{secrets.XENYO_SATIS_PASSWORD}}
+updates:
+  - package-ecosystem: "composer"
+    directory: "/"
+    registries:
+      - xenyo-satis
+    schedule:
+      interval: "weekly"
+    allow:
+      - dependency-type: "all"
