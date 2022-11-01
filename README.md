@@ -49,7 +49,7 @@ git clone git@github.com:xenyo/my-new-project
 Install composer dependencies:
 
 ```
-composer update
+composer install
 ```
 
 In `web/sites/default`, copy `default.settings.php` to `settings.php`.
