@@ -1,6 +1,6 @@
 {
-    "name": "drupal/recommended-project",
-    "description": "Project template for Drupal 9 projects with a relocated document root",
+    "name": "xenyo/uni-project-template",
+    "description": "Project template for Xenyo Uni Framework.",
     "type": "project",
     "license": "GPL-2.0-or-later",
     "homepage": "https://www.drupal.org/project/drupal",
@@ -11,19 +11,27 @@
     "repositories": [
         {
             "type": "composer",
+            "url": "https://packages.xenyo.net"
+        },
+        {
+            "type": "composer",
             "url": "https://packages.drupal.org/8"
         }
     ],
     "require": {
-        "composer/installers": "^1.9",
+        "php": ">=8.1",
+        "composer/installers": "^2.2",
         "drupal/core-composer-scaffold": "^9.4",
         "drupal/core-project-message": "^9.4",
-        "drupal/core-recommended": "^9.4"
+        "drupal/core-recommended": "^9.4",
+        "drush/drush": "^11.0",
+        "xenyo/uni_theme": "^1.0",
+        "xenyo/fontawesome": "^6.0"
     },
     "conflict": {
         "drupal/drupal": "*"
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
         "allow-plugins": {
