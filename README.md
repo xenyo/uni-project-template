@@ -69,7 +69,6 @@ Add the base theme you want to build the site from:
 composer require xenyo/uni_theme
 ```
 
-
 ## Custom modules and themes
 
 The project repository must not contain the source code of any custom themes or modules. Instead, a separate repository should be created for each custom theme and module and added to the project using Composer.
