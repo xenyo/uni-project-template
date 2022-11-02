@@ -1,6 +1,7 @@
 const { queue, server, webhooks, logger } = require('github-webhooks-exec');
 
 webhooks.on('push', event => {
+  logger.info(`${event.payload.ref} was updated in ${event.payload.repository.full_name}.`);
   const commands = [
     'vendor/bin/drush cex -y',
     'git add config',
