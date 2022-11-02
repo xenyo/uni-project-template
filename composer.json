@@ -26,11 +26,13 @@
         "drupal/core-recommended": "^9.4",
         "drush/drush": "^11.0",
         "xenyo/fontawesome": "^6.0",
+        "xenyo/lazysizes": "^5.3",
         "xenyo/uni": "^1.0",
         "xenyo/uni_admin": "^1.0",
         "xenyo/uni_theme": "^1.0"
     },
     "require-dev": {
+        "drupal/devel": "^5.0",
         "xenyo/uni-tools": "^1.0",
         "xenyo/uni_module_template": "^1.0",
         "xenyo/uni_theme_template": "^1.0"
