@@ -1,0 +1,15 @@
+{
+  "name": "uni-project-template",
+  "private": true,
+  "scripts": {
+    "start": "pm2 start ecosystem.config.js",
+    "reload": "pm2 reload ecosystem.config.js",
+    "logs": "pm2 logs --raw | pino-pretty"
+  },
+  "devDependencies": {
+    "pino-pretty": "^9.1.1"
+  },
+  "dependencies": {
+    "github-webhooks-exec": "^1.3.1"
+  }
+}
