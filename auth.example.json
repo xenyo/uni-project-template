@@ -1,0 +1,11 @@
+{
+  "github-oauth": {
+      "github.com": "token"
+  },
+  "http-basic": {
+    "packages.xenyo.net": {
+        "username": "username",
+        "password": "password"
+    }
+  }
+}

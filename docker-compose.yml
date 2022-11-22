@@ -1,0 +1,16 @@
+name: uni-project-template
+services:
+  drupal:
+    build: .
+    hostname: uni-project-template
+    ports:
+      - ${APACHE_PORT:-80}:80
+    volumes:
+      - ~/.ssh:/mnt/.ssh:ro
+      - www:/var/www
+      - db:/var/lib/mysql
+      - ./auth.json:/var/www/html/auth.json:ro
+
+volumes:
+  www:
+  db:
