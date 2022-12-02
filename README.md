@@ -1,81 +1,105 @@
 # xenyo/uni-project-template
 
-## Requirements
+Drupal project template for Xenyo Uni Framework.
 
-- PHP 8.1 or above
-- Composer v2 or above
+## Quick start
 
-## Authentication
+### Decide project name
 
-The following steps must be performed once per development environment.
+Decide on a name for your new project. The name must:
 
-### Xenyo Composer repository
+- Only include lowercase letters, digits and hyphens (-).
+- Begin with the namespace of the client.
+- End with `-project` or `-site`. This is to reduce confusion between project and module repositories.
 
-Ask the administrator to provide a username and password for the Xenyo Composer
-repository (https://packages.xenyo.net).
+### Create GitHub repository
 
-Add the authentication details to Composer:
+Create a new GitHub repository based on this template. You can select this
+template when creating the repository or click the *Use this template* button at
+https://github.com/xenyo/uni-project-template.
+
+Clone the new repository to your local machine.
+
+### Update name and description
+
+Update the name and description in the following files:
+
+- composer.json
+- docker-compose.yml
+- README.md
+
+Before proceeding, commit your changes and push.
+
+## Docker
+
+### Provide authentication details
+
+Copy `auth.example.json` to `auth.json`.
+
+Enter the username and password for packages.xenyo.net (obtained from the system administrator).
+
+Go to https://github.com/settings/tokens and generate a personal access
+token with no expiration and `repo` scope. Add the token to the `auth.json`.
+
+### Adjust ports
+
+Copy `.env.example` to `.env`. If necessary, edit the values to prevent port binding conflicts.
+
+### Start containers
+
+Create and start containers in the background:
 
 ```
-composer config --global http-basic.packages.xenyo.net username password
+docker compose up -d
 ```
 
-### Xenyo GitHub repositories
+### Attach to container
 
-Go to https://github.com/settings/tokens and generate a new personal access
-token with no expiration and `repo` scope.
+There are multiple ways to interact with the container.
 
-Add the token to Composer:
-
-```
-composer config --global github-oauth.github.com token
-```
-
-GitHub authentication is not required if your project does not depend on any dev
-versions of packages from Xenyo.
-
-## Usage
-
-Create a new repository for your project by clicking the **Use this template**
-button. Project repository names must follow the pattern
-`{client}-{title}-project`.
-
-Clone the new repository to your development environment:
+First, you can simply launch bash from the command line:
 
 ```
-git clone git@github.com:xenyo/my-new-project
+docker compose exec drupal bash
 ```
 
-Install composer dependencies:
+Secondly, you can attach VS Code to the container using the *Docker* and
+*Dev Containers* extensions.
+
+Thirdly, you can use JetBrains Gateway to attach PHPStorm to the container via
+SSH.
+
+### Clone the project
+
+Once inside the container, clone the project repository to `/var/www/html`:
 
 ```
-composer install
+git clone git@github.com:xenyo/example-project.git /var/www/html
 ```
+
+### Set up Drupal
 
 In `web/sites/default`, copy `default.settings.php` to `settings.php`.
 
-Set the config sync directory:
+Open the site in the browser and run the Drupal installer with the standard
+profile.
+
+Then, update the config sync directory in `settings.php` to the following:
 
 ```php
 $settings['config_sync_directory'] = '../config/sync';
 ```
 
-Open the site in the browser and run the Drupal installer with the standard
-profile.
-
-Add the base theme you want to build the site from:
-
-```
-composer require xenyo/uni_theme
-```
-
 ## Custom modules and themes
 
-The project repository must not contain the source code of any custom themes or modules. Instead, a separate repository should be created for each custom theme and module and added to the project using Composer.
+The `.gitignore` has been set up to ignore the entire `web` directory. This is intentional and you should not check in any files inside `web`.
+
+Instead, a separate repository should be created for each custom theme and
+module you want to add. Then, you can add them to your project with Composer.
 
 See https://github.com/xenyo/uni_module_template and https://github.com/xenyo/uni_theme_template.
 
-## Development
+## Development configuration
 
 ### 1. development.services.yml
 
@@ -90,8 +114,7 @@ parameters:
 
 ### 2. settings.local.php
 
-In `web/sites`, copy `example.settings.local.php` to `settings.local.php` and
-make the following changes:
+In `web/sites`, copy `example.settings.local.php` to `default/settings.local.php` and make the following changes:
 
 ```php
 // 1. Edit this line to point to the development.services.yml created above
@@ -113,3 +136,7 @@ if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
   include $app_root . '/' . $site_path . '/settings.local.php';
 }
 ```
+
+## Webhooks
+
+See https://github.com/xenyo/github-webhooks-exec
