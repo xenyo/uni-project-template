@@ -10,7 +10,8 @@ Decide on a name for your new project. The name must:
 
 - Only include lowercase letters, digits and hyphens (-).
 - Begin with the namespace of the client.
-- End with `-project` or `-site`. This is to reduce confusion between project and module repositories.
+- End with `-project` or `-site`. This is to reduce confusion between project
+  and module repositories.
 
 ### Create GitHub repository
 
@@ -30,30 +31,27 @@ Update the name and description in the following files:
 
 Before proceeding, commit your changes and push.
 
-## Docker
+## Docker development environment
 
 ### Provide authentication details
 
 Copy `auth.example.json` to `auth.json`.
 
-Enter the username and password for packages.xenyo.net (obtained from the system administrator).
-
-Go to https://github.com/settings/tokens and generate a personal access
-token with no expiration and `repo` scope. Add the token to the `auth.json`.
+Go to https://github.com/settings/tokens and generate a personal access token
+with no expiration and `repo` scope. Add the token to the `auth.json`.
 
 ### Adjust ports
 
-Copy `.env.example` to `.env`. If necessary, edit the values to prevent port binding conflicts.
+Copy `.env.example` to `.env`. If necessary, edit the values to prevent port
+binding conflicts.
 
 ### Start containers
 
-Create and start containers in the background:
+Create and start containers:
 
 ```
 docker compose up -d
 ```
-
-### Attach to container
 
 There are multiple ways to interact with the container.
 
@@ -63,8 +61,8 @@ First, you can simply launch bash from the command line:
 docker compose exec drupal bash
 ```
 
-Secondly, you can attach VS Code to the container using the *Docker* and
-*Dev Containers* extensions.
+Secondly, you can attach VS Code to the container using the *Docker* and *Dev
+Containers* extensions.
 
 Thirdly, you can use JetBrains Gateway to attach PHPStorm to the container via
 SSH.
@@ -74,17 +72,38 @@ SSH.
 Once inside the container, clone the project repository to `/var/www/html`:
 
 ```
-git clone git@github.com:xenyo/example-project.git /var/www/html
+git clone git@github.com:xenyo/uni-project-template.git /var/www/html
 ```
 
 ### Set up Drupal
 
+Install composer dependencies:
+
+```
+cd /var/www/html
+composer install
+```
+
 In `web/sites/default`, copy `default.settings.php` to `settings.php`.
 
-Open the site in the browser and run the Drupal installer with the standard
-profile.
+Open the site in the browser and run the Drupal installer.
 
-Then, update the config sync directory in `settings.php` to the following:
+On the *Database configuration* screen, enter the following values:
+
+| Database name | Database username | Host |
+| --- | --- | --- |
+| drupal | root | mariadb |
+
+Leave the password field blank.
+
+Ignore everything on the *Configure site* screen. Instead, import the database
+from the SQL dump.
+
+```
+composer exec dbi
+```
+
+Then, update the config sync path in `settings.php` to:
 
 ```php
 $settings['config_sync_directory'] = '../config/sync';
@@ -92,19 +111,22 @@ $settings['config_sync_directory'] = '../config/sync';
 
 ## Custom modules and themes
 
-The `.gitignore` has been set up to ignore the entire `web` directory. This is intentional and you should not check in any files inside `web`.
+The `.gitignore` has been set up to ignore the entire `web` directory. This is
+intentional and you should not check in any files inside `web`.
 
 Instead, a separate repository should be created for each custom theme and
 module you want to add. Then, you can add them to your project with Composer.
 
-See https://github.com/xenyo/uni_module_template and https://github.com/xenyo/uni_theme_template.
+See https://github.com/xenyo/uni_module_template and
+https://github.com/xenyo/uni_theme_template.
 
 ## Development configuration
 
 ### 1. development.services.yml
 
-In `web/sites`, copy `development.services.yml` to the `default` directory and
-add the following under the `parameters` key:
+In `web/sites`, copy `development.services.yml` to
+`default/development.services.yml` and add the following under the `parameters`
+key:
 
 ```yml
 parameters:
@@ -114,7 +136,8 @@ parameters:
 
 ### 2. settings.local.php
 
-In `web/sites`, copy `example.settings.local.php` to `default/settings.local.php` and make the following changes:
+In `web/sites`, copy `example.settings.local.php` to
+`default/settings.local.php` and make the following changes:
 
 ```php
 // 1. Edit this line to point to the development.services.yml created above
