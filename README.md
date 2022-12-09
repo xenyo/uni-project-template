@@ -160,6 +160,15 @@ if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
 }
 ```
 
+## Installing composer packages from source
+
+In order to make changes to packages installed by Composer, you will need to
+install them from source:
+
+```
+composer reinstall xenyo/* --prefer-source
+```
+
 ## Webhooks
 
 See https://github.com/xenyo/github-webhooks-exec
