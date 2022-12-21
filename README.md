@@ -33,19 +33,12 @@ Before proceeding, commit your changes and push.
 
 ## Docker development environment
 
-### Provide authentication details
-
-Copy `auth.example.json` to `auth.json`.
-
-Go to https://github.com/settings/tokens and generate a personal access token
-with no expiration and `repo` scope. Add the token to the `auth.json`.
-
-### Adjust ports
+### 1. Adjust ports
 
 Copy `.env.example` to `.env`. If necessary, edit the values to prevent port
 binding conflicts.
 
-### Start containers
+### 2. Start containers
 
 Create and start containers:
 
@@ -67,7 +60,7 @@ Containers* extensions.
 Thirdly, you can use JetBrains Gateway to attach PHPStorm to the container via
 SSH.
 
-### Clone the project
+### 3. Clone the project
 
 Once inside the container, clone the project repository to `/var/www/html`:
 
@@ -75,7 +68,14 @@ Once inside the container, clone the project repository to `/var/www/html`:
 git clone git@github.com:xenyo/uni-project-template.git /var/www/html
 ```
 
-### Set up Drupal
+### 4. Provide authentication details
+
+Copy `auth.example.json` to `auth.json`.
+
+Go to https://github.com/settings/tokens and generate a personal access token
+with no expiration and `repo` scope. Add the token to the `auth.json`.
+
+### 5. Set up Drupal
 
 Install composer dependencies:
 
@@ -108,17 +108,6 @@ Then, update the config sync path in `settings.php` to:
 ```php
 $settings['config_sync_directory'] = '../config/sync';
 ```
-
-## Custom modules and themes
-
-The `.gitignore` has been set up to ignore the entire `web` directory. This is
-intentional and you should not check in any files inside `web`.
-
-Instead, a separate repository should be created for each custom theme and
-module you want to add. Then, you can add them to your project with Composer.
-
-See https://github.com/xenyo/uni_module_template and
-https://github.com/xenyo/uni_theme_template.
 
 ## Development configuration
 
