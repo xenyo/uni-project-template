@@ -33,7 +33,7 @@ Before proceeding, commit your changes and push.
 
 ## Development environment
 
-See https://github.com/xenyo/uni-project-template/wiki/Development-Environment-Guide
+See https://github.com/xenyo/uni-project-template/wiki/Development-Environment
 
 ## Webhooks
 
