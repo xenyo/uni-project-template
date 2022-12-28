@@ -1,6 +1,6 @@
 ---
-name: Enhancement
-about: Add a new feature
+name: Configuration
+about: Add backend configuration
 title: ''
 labels: enhancement
 assignees: ''
@@ -8,11 +8,6 @@ assignees: ''
 ---
 
 # Namespace
-
-# Scope
-
-- Export related configuration to `web/modules/custom/PATH/`
-- Add Twig/CSS/JS to `web/themes/custom/PATH/`
 
 # Specification
 
@@ -27,3 +22,7 @@ assignees: ''
 |  |  |  |  |  |
 
 ### Requirements
+
+# Scope
+
+- `PATH/`
