@@ -1,28 +1,24 @@
 ---
 name: Pattern
 about: Add frontend pattern template
-title: ''
-labels: enhancement
+title: 'Pattern: '
+labels: pattern
 assignees: ''
 
 ---
 
-# Namespace
+# Pattern label (machine_name)
 
-# Specification
+## Screenshots
 
-## Pattern label (machine_name)
-
-### Screenshots
-
-### Definition
+## Definition
 
 ```yml
 
 ```
 
-### Requirements
+## Requirements
 
-# Scope
+## Scope
 
 - `PATH/`

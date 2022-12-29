@@ -1,28 +1,24 @@
 ---
 name: Configuration
 about: Add backend configuration
-title: ''
-labels: enhancement
+title: 'Config: '
+labels: config
 assignees: ''
 
 ---
 
-# Namespace
+# Entity type: Bundle label (machine_name)
 
-# Specification
+## Screenshots
 
-## Entity type: Bundle label (machine_name)
-
-### Screenshots
-
-### Fields
+## Fields
 
 | Label | Machine name | Type | Target | Number |
 | - | - | - | - | - |
 |  |  |  |  |  |
 
-### Requirements
+## Requirements
 
-# Scope
+## Scope
 
 - `PATH/`
