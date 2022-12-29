@@ -1,6 +1,6 @@
 ---
 name: Pattern
-about: Add frontend pattern template
+about: Add frontend pattern
 title: 'Pattern: '
 labels: pattern
 assignees: ''
